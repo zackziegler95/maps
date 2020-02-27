@@ -1,17 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
-    <title>Using Parcel with OpenLayers</title>
+    <title>KML Click Capture Sample</title>
     <style>
       #map {
-        width: 100%;
-        height: 700px;
-      }
+       height: 560px;
+       width: 100%;
+       }
     </style>
   </head>
   <body>
     <div id="map"></div>
-    <script src="./index.js"></script>
+    <script>
+      var map;
+      var src = 'https://biogeo.ucdavis.edu/data/gadm3.6/kmz/gadm36_AFG_0.kmz';
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: new google.maps.LatLng(-19.257753, 146.823688),
+          zoom: 2,
+          mapTypeId: 'terrain'
+        });
+
+        var kmlLayer = new google.maps.KmlLayer(src, {
+          suppressInfoWindows: true,
+          preserveViewport: false,
+          map: map
+        });
+        console.log(kmlLayer);
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB49JlEkHP8_Rea59Ybvqmo6A8ZNKK32Go&callback=initMap">
+    </script>
   </body>
 </html>
